@@ -43,5 +43,6 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
         uint256 _tokenId
     ) external payable override onlyOwnerOf(_tokenId) {
         zombieApprovals[_tokenId] = _approved;
+        emit Approval(msg.sender, _approved, _tokenId);
     }
 }
