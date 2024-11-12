@@ -1,9 +1,18 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.27;
 
-import "./ZombieHelper.sol";
+import {ZombieHelper} from "./ZombieHelper.sol";
+import {ZombieAttack} from "./ZombieAttack.sol";
+
+import {SafeMath} from "./SafeMath.sol";
+import {SafeMath32} from "./SafeMath32.sol";
+import {SafeMath16} from "./SafeMath16.sol";
 
 contract ZombieAttack is ZombieHelper {
+    using SafeMath for uint256;
+    using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
+
     uint randNonce = 0;
     uint attackVictoryProbability = 70;
 
