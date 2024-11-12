@@ -3,11 +3,15 @@ pragma solidity ^0.8.27;
 
 import {ERC721} from "./ERC721.sol";
 import {ZombieAttack} from "./ZombieAttack.sol";
+import {SafeMath} from "./SafeMath.sol";
 
 /// @title A contract that manages transferring zombie ownership
 /// @author Leo Dutra
 /// @dev ompliant with OpenZeppelin's implementation of the ERC721 spec draft
 contract ZombieOwnership is ZombieAttack, ERC721 {
+
+    using SafeMath for uint256;
+
     mapping(uint => address) zombieApprovals;
 
     function balanceOf(
