@@ -52,7 +52,6 @@ const App = () => {
       }
     }
 
-
     function createRandomZombie(name) {
       // This is going to take a while, so update the UI to let the user know
       // the transaction has been sent
@@ -67,6 +66,19 @@ const App = () => {
       })
       .on("error", function(error) {
         // Do something to alert the user their transaction has failed
+        $("#txStatus").text(error);
+      });
+    }
+
+    function feedOnKitty(zombieId, kittyId) {
+      $("#txStatus").text("Eating a kitty. This may take a while...");
+      return cryptoZombies.methods.feedOnKitty(zombieId, kittyId)
+      .send({ from: userAccount })
+      .on("receipt", function(receipt) {
+        $("#txStatus").text("Ate a kitty and spawned a new Zombie!");
+        getZombiesByOwner(userAccount).then(displayZombies);
+      })
+      .on("error", function(error) {
         $("#txStatus").text(error);
       });
     }
